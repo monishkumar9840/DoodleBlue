@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MS Event Management</title>
+    <link rel="icon" href="MS Event Management Luxury Logo.png" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <form action="/submit" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="Mobile No">Mobile No:</label>
+      <input
+        type="Mobile No"
+        id="Mobile No"
+        name="Mobile No"
+        min="Enter 10 digit no"
+        required
+      /><br /><br />
+
+      <label for="Password">Password:</label>
+      <input type="Password" id="email" name="Password" required /><br /><br />
+
+      <label for="Age">Age:</label>
+      <input
+        type="number"
+        id="Age"
+        name="Age"
+        min="1"
+        max="100"
+        required
+      /><br /><br />
+
+      <label for="Date"> Select Date:</label>
+      <input type="date" id="date" name="date" required /><br /><br />
+
+      <label for="event">Select Event:</label>
+      <select id="event" name="event">
+        <option value="Get Together">Get Together</option>
+        <option value="Birthday Celebration">Birthday Celebration</option>
+        <option value="Workshop on AI">Workshop on AI</option></select
+      ><br /><br />
+      <div class="buttons">
+        <button type="submit" value="Register">Submit</button>
+        <button type="reset" value="Reset">Reset</button>
+      </div>
+    </form>
+  </body>
+</html>
