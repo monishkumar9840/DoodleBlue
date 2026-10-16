@@ -4,7 +4,7 @@ function greet(){
 }
 
 // Parameters and Arguments
-functionadd(a, b){
+function add(a, b){
     return a + b;
 }
 console.log(add(2, 4));
