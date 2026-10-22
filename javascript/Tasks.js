@@ -32,7 +32,7 @@ let arr4 = [1,2,3,4,5,6];
 let result1 = arr4.reduce((sum, arr4) => {
     return sum + arr4
 });
-console.log(result1);
+console.log(result1); 
 
 //task 7
 const book = {
@@ -109,7 +109,7 @@ function addNumbers(...numbers) {
 
 console.log(addNumbers(10, 20));
 console.log(addNumbers(10, 20, 30));
-console.log(addNumbers(10, 20, 30, 40, 50));
+console.log(addNumbers(10, 20, 30, 40, 50)); //
 
 //task 13
 const users = {
@@ -121,7 +121,7 @@ const users = {
 
 const city = users?.address?.city ?? "City not available";
 
-console.log(city);
+console.log(city); // hosur
 
 const anotherUser = {
   name: "Monish"
@@ -129,4 +129,56 @@ const anotherUser = {
 
 const anotherCity = anotherUser?.address?.city ?? "City not available";
 
-console.log(anotherCity);
+console.log(anotherCity); // city not available
+
+
+
+// SCOPE, HOISTING AND CLOSURE
+
+// create a global CampusName and print it from inside a function
+
+const CampusName = "SAEC";
+function campus(){
+  console.log(CampusName);
+}
+campus(); // Output: SAEC
+
+// create an if block with let and var variables; teest which is  accessible outside
+
+if(true){
+    var varVariable = "var variable";
+    let letVariable = "let variable";
+}
+console.log(varVariable); // var variable
+// console.log(letVariable); // Output: ReferenceError: letVariable is not defined
+
+// predict car and let behavior when logged before declaration
+
+console.log(x); // Output: undefined
+var x = 5;
+console.log(x);
+
+
+// let and const
+
+//console.log(y); // ReferenceError: Cannot access 'y' before initialization
+let y = 5;
+console.log(y);
+
+// Create makeCounter with a private variable count and return a function that increments it
+
+function makeCounter() {
+  let count = 0;
+  function add() {
+    count++;
+    console.log(count);
+  };
+  return add;
+}
+const counter = makeCounter();
+counter(); // Output: 1
+counter(); // Output: 2
+
+const counter2 = makeCounter();
+counter2(); // Output: 1
+counter2(); // Output: 2
