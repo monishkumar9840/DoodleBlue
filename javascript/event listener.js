@@ -27,9 +27,9 @@ document.getElementById("registrationForm").addEventListener("submit", function 
 
 // Challenge Render three event cards
 const eventList = [
-    { title: "Web Development Workshop", date: "October 25, 2026" },
-    { title: "JavaScript Seminar", date: "October 27, 2026" },
-    { title: "Cyber Security Event", date: "October 30, 2026" }
+    { title: "Ethical Hacking Workshop", date: "October 22, 2026" },
+    { title: "Cloud Computing Seminar", date: "October 25, 2026" },
+    { title: "Cyber Security Event", date: "November 18, 2026" }
 ];
 
 const eventsContainer = document.getElementById("events");
