@@ -1,0 +1,96 @@
+.events-section {
+  padding: 60px 40px;
+
+  background: #ffffff;
+}
+
+
+.events-header {
+  margin-bottom: 30px;
+}
+
+
+.events-subtitle {
+  margin: 0 0 8px;
+
+  color: #6572a5;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+
+.events-header h2 {
+  margin: 0 0 10px;
+
+  color: #202b3c;
+
+  font-size: 30px;
+  font-weight: 600;
+}
+
+
+.events-description {
+  margin: 0;
+
+  color: #777f8f;
+
+  font-size: 14px;
+}
+
+
+/* EVENTS HORIZONTAL */
+
+.event-list {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: 25px;
+
+  overflow-x: auto;
+
+  padding: 5px 5px 20px;
+}
+
+
+/* Each card */
+
+.event-list .event-card {
+  flex: 0 0 350px;
+
+  width: 350px;
+}
+
+
+/* Empty */
+
+.empty-events {
+  padding: 30px;
+
+  text-align: center;
+
+  color: #777f8f;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+  .events-section {
+    padding: 40px 20px;
+  }
+
+  .event-list {
+    flex-direction: column;
+  }
+
+  .event-list .event-card {
+    width: 100%;
+
+    flex: none;
+  }
+}

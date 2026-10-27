@@ -1,0 +1,157 @@
+.event-card {
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e4eb;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  min-height: 500px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Blue category section */
+
+.event-image {
+  height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #3936c8;
+
+  color: white;
+
+  font-size: 22px;
+  font-weight: 600;
+}
+
+
+/* Event content */
+
+.event-content {
+  padding: 25px;
+}
+
+.event-category {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  color: #6572a5;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.event-content h3 {
+  margin: 0 0 15px;
+
+  color: #202b3c;
+
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.event-description {
+  margin-bottom: 20px;
+
+  color: #777f8f;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* Date, Venue, Registration */
+
+.event-info {
+  margin: 8px 0;
+
+  color: #555f70;
+
+  font-size: 13px;
+}
+
+.event-info strong {
+  color: #303b4d;
+}
+
+
+/* Buttons */
+
+.event-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 22px;
+}
+
+.event-actions button {
+  padding: 10px 12px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+
+/* Register button */
+
+.register-btn {
+  background: #4d45c7;
+
+  color: white;
+}
+
+.register-btn:hover {
+  background: #4038b1;
+}
+
+
+/* Favorite button */
+
+.favorite-btn {
+  background: #eee9d7;
+
+  color: #514a2f;
+}
+
+.favorite-btn:hover {
+  background: #e4ddc5;
+}
+
+.favorite-btn.is-favorite {
+  background: #f0d75e;
+
+  color: #3f3500;
+}
+
+
+/* Remove button */
+
+.remove-btn {
+  background: #f2dfe3;
+
+  color: #9b4352;
+}
+
+.remove-btn:hover {
+  background: #ead0d5;
+}
