@@ -64,6 +64,19 @@
       "eventTitle": "Cultural Day",
       "createdAt": "2026-11-03T17:24:10.692Z",
       "id": 4
+    },
+    {
+      "studentName": "Monish",
+      "email": "monishkumar9840@outlook.com",
+      "department": "CSE-CS",
+      "year": "4th Year",
+      "attendance": "online",
+      "accessibility": true,
+      "message": "dd",
+      "eventId": "1",
+      "eventTitle": "Cultural Day",
+      "createdAt": "2026-11-04T05:20:30.348Z",
+      "id": 5
     }
   ]
 }
