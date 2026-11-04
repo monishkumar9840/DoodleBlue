@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { Button, Input, Select, TextArea } from "../Common";
 import "./Registration.css";
 
-function Registration({ event, onSubmit, onBack }) {
+function Registration({ event, events, onEventChange, onSubmit }) {
+
+  const nameInputRef = useRef(null);
+
+  useEffect(() => {
+    nameInputRef.current.focus();
+  }, []);
+
   const [formData, setFormData] = useState({
     studentName: "",
     email: "",
@@ -12,56 +20,57 @@ function Registration({ event, onSubmit, onBack }) {
     accessibility: false,
     message: "",
   });
-
-  // Prevent error if event is not passed
-  if (!event) {
-    return (
-      <section className="registration-section">
-        <div className="registration-container">
-          <h1>No Event Selected</h1>
-          <p className="registration-description">
-            Please select an event before registering.
-          </p>
-
-          <button
-            type="button"
-            className="back-button"
-            onClick={onBack}
-          >
-            Back to Events
-          </button>
-        </div>
-      </section>
-    );
-  }
+  const [submittedRegistration, setSubmittedRegistration] = useState(null);
+  const [submissionError, setSubmissionError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
+    setSubmittedRegistration(null);
+    setSubmissionError('');
     setFormData((previousData) => ({
       ...previousData,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleEventChange = (e) => {
+    setSubmittedRegistration(null);
+    setSubmissionError('');
+    onEventChange(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !formData.studentName ||
-      !formData.email ||
-      !formData.department ||
-      !formData.year
-    ) {
-      alert("Please fill all required fields.");
+    if (!event) {
+      setSubmissionError('Please choose an event.');
       return;
     }
 
-    // Send selected event ID back to App
-    onSubmit(event.id);
+    setSubmissionError('');
+    setIsSubmitting(true);
+
+    try {
+      await onSubmit(formData, event);
+      setSubmittedRegistration({ ...formData, event });
+    } catch (error) {
+      setSubmissionError(
+        error instanceof Error
+          ? `${error.message}. Make sure the JSON Server is running.`
+          : 'Could not save your registration. Make sure the JSON Server is running.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
+    if (isSubmitting) return;
+    setSubmittedRegistration(null);
+    setSubmissionError('');
+    onEventChange('');
     setFormData({
       studentName: "",
       email: "",
@@ -94,12 +103,14 @@ function Registration({ event, onSubmit, onBack }) {
 
             {/* Student Name */}
             <div className="form-group">
-              <label>
+              <label htmlFor="studentName">
                 Student name <span>*</span>
               </label>
 
-              <input
+              <Input
+                ref={nameInputRef}
                 type="text"
+                id="studentName"
                 name="studentName"
                 value={formData.studentName}
                 onChange={handleChange}
@@ -110,12 +121,13 @@ function Registration({ event, onSubmit, onBack }) {
 
             {/* Email */}
             <div className="form-group">
-              <label>
+              <label htmlFor="email">
                 Email address <span>*</span>
               </label>
 
-              <input
+              <Input
                 type="email"
+                id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -126,11 +138,12 @@ function Registration({ event, onSubmit, onBack }) {
 
             {/* Department */}
             <div className="form-group">
-              <label>
+              <label htmlFor="department">
                 Department <span>*</span>
               </label>
 
-              <select
+              <Select
+                id="department"
                 name="department"
                 value={formData.department}
                 onChange={handleChange}
@@ -163,16 +176,17 @@ function Registration({ event, onSubmit, onBack }) {
                 <option value="CIVIL">
                   Civil Engineering
                 </option>
-              </select>
+              </Select>
             </div>
 
             {/* Year */}
             <div className="form-group">
-              <label>
+              <label htmlFor="year">
                 Year of study <span>*</span>
               </label>
 
-              <select
+              <Select
+                id="year"
                 name="year"
                 value={formData.year}
                 onChange={handleChange}
@@ -197,17 +211,18 @@ function Registration({ event, onSubmit, onBack }) {
                 <option value="4th Year">
                   4th Year
                 </option>
-              </select>
+              </Select>
             </div>
 
             {/* Password */}
             <div className="form-group">
-              <label>
+              <label htmlFor="password">
                 Create a demo password (optional)
               </label>
 
-              <input
+              <Input
                 type="password"
+                id="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
@@ -226,8 +241,9 @@ function Registration({ event, onSubmit, onBack }) {
               <div className="radio-group">
 
                 <label className="radio-label">
-                  <input
+                  <Input
                     type="radio"
+                    id="attendance-in-person"
                     name="attendance"
                     value="in-person"
                     checked={formData.attendance === "in-person"}
@@ -238,8 +254,9 @@ function Registration({ event, onSubmit, onBack }) {
                 </label>
 
                 <label className="radio-label">
-                  <input
+                  <Input
                     type="radio"
+                    id="attendance-online"
                     name="attendance"
                     value="online"
                     checked={formData.attendance === "online"}
@@ -257,29 +274,38 @@ function Registration({ event, onSubmit, onBack }) {
           {/* Selected Event */}
           <div className="form-group full-width">
 
-            <label>
+            <label htmlFor="event">
               Choose an event <span>*</span>
             </label>
 
-            <select value={event.id} disabled>
-              <option value={event.id}>
-                {event.title}
-              </option>
-            </select>
+            <Select
+              id="event"
+              value={event ? String(event.id) : ""}
+              onChange={handleEventChange}
+              required
+            >
+              <option value="">Select an event</option>
+              {events.map((availableEvent) => (
+                <option key={availableEvent.id} value={String(availableEvent.id)}>
+                  {availableEvent.title}
+                </option>
+              ))}
+            </Select>
 
           </div>
 
           {/* Accessibility */}
           <div className="checkbox-group">
 
-            <input
+            <Input
               type="checkbox"
+              id="accessibility"
               name="accessibility"
               checked={formData.accessibility}
               onChange={handleChange}
             />
 
-            <label>
+            <label htmlFor="accessibility">
               I would like the team to contact me about accessibility support.
             </label>
 
@@ -288,12 +314,13 @@ function Registration({ event, onSubmit, onBack }) {
           {/* Message */}
           <div className="form-group full-width">
 
-            <label>
+            <label htmlFor="message">
               Message (optional)
             </label>
 
-            <textarea
+            <TextArea
               name="message"
+              id="message"
               value={formData.message}
               onChange={handleChange}
               placeholder="Any questions or notes for the event team?"
@@ -305,32 +332,60 @@ function Registration({ event, onSubmit, onBack }) {
           {/* Buttons */}
           <div className="registration-buttons">
 
-            <button
+            <Button
+              variant="primary"
               type="submit"
               className="submit-registration"
+              disabled={isSubmitting}
             >
-              Submit Registration
-            </button>
+              {isSubmitting ? 'Saving...' : 'Submit Registration'}
+            </Button>
 
-            <button
+            <Button
+              variant="secondary"
               type="button"
               className="reset-form"
               onClick={handleReset}
+              disabled={isSubmitting}
             >
               Reset Form
-            </button>
-
-            <button
-              type="button"
-              className="back-button"
-              onClick={onBack}
-            >
-              Back to Events
-            </button>
+            </Button>
 
           </div>
 
         </form>
+
+        {submissionError && (
+          <p className="registration-error" role="alert">
+            {submissionError}
+          </p>
+        )}
+
+        {submittedRegistration && (
+          <section className="registration-success" role="status" aria-live="polite">
+            <h2>Registration complete!</h2>
+            <p>
+              Your registration has been saved to the local database.
+            </p>
+            <ul>
+              <li><strong>Student:</strong> {submittedRegistration.studentName}</li>
+              <li><strong>Email:</strong> {submittedRegistration.email}</li>
+              <li>
+                <strong>Department:</strong>{' '}
+                {submittedRegistration.department === 'CSE'
+                  ? 'Computer Science Engineering'
+                  : submittedRegistration.department === 'CSE-CS'
+                    ? 'CSE - Cyber Security'
+                    : submittedRegistration.department}
+              </li>
+              <li><strong>Event:</strong> {submittedRegistration.event.title}</li>
+              <li>
+                <strong>Attendance:</strong>{' '}
+                {submittedRegistration.attendance === 'online' ? 'Online' : 'In person'}
+              </li>
+            </ul>
+          </section>
+        )}
 
       </div>
     </section>

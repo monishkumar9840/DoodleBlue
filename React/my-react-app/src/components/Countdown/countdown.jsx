@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 function Countdown() {
   const [seconds, setSeconds] = useState(10);
@@ -14,4 +13,3 @@ function Countdown() {
   return <p>{seconds > 0 ? seconds : "Time's up!"}</p>;
 }
 export default Countdown;
-ee

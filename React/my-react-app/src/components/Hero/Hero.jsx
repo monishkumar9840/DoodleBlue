@@ -1,17 +1,11 @@
+import { Link } from "react-router-dom";
 import "./Hero.css";
 
 function Hero() {
-  const exploreEvents = () => {
-    document.getElementById("events")?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
-
   return (
     <section className="hero">
       <div className="hero-content">
-
-        <span className="eyebrow" style={{ color: "#8613ea" }}>
+        <span className="eyebrow">
           YOUR CAMPUS, YOUR COMMUNITY
         </span>
 
@@ -21,17 +15,18 @@ function Hero() {
         </h1>
 
         <p>
-          Discover exciting events, meet new people, and
-          make the most of your college life.
+          Discover exciting events, meet new people, and make the most of your
+          college life.
         </p>
 
-        <button
-          className="hero-button"
-          onClick={exploreEvents}
-        >
-          Explore Events →
-        </button>
-
+        <div className="hero-actions">
+          <Link to="/events" className="hero-button">
+            Explore Events
+          </Link>
+          <Link to="/registration" className="hero-button hero-button-secondary">
+            Register for an Event
+          </Link>
+        </div>
       </div>
     </section>
   );

@@ -1,14 +1,57 @@
+:root {
+  --font-sans: "DM Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Manrope", "DM Sans", "Segoe UI", sans-serif;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-
 body {
   margin: 0;
   padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  color: #202b3c;
+  background: #ffffff;
 }
 
+button,
+a,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
 
 * {
   box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
 }

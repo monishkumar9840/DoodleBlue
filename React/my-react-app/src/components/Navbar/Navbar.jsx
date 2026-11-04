@@ -1,49 +1,25 @@
+import { NavLink } from "react-router-dom";
+import { useFavorites } from "../../context/FavoritesContext";
 import "./Navbar.css";
 
 function Navbar() {
-  const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
+  const { favoriteIds } = useFavorites();
 
   return (
     <header className="navbar">
       <div className="nav-container">
-
-        <button
-          className="logo"
-          onClick={() =>
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            })
-          }
-        >
+        <NavLink className="logo" to="/">
           Campus<span>Connect</span>
-        </button>
+        </NavLink>
 
         <nav className="nav-links">
-          <button
-            onClick={() =>
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              })
-            }
-          >
-            Home
-          </button>
-
-          <button onClick={() => scrollTo("events")}>
-            Events
-          </button>
-
-          <button onClick={() => scrollTo("about")}>
-            About
-          </button>
+          <NavLink to="/" end>Home</NavLink>
+          <NavLink to="/events">Events</NavLink>
+          <NavLink to="/registration">Register</NavLink>
+          <NavLink className="favorites-link" to="/favorites">
+            Favorites <span>({favoriteIds.length})</span>
+          </NavLink>
         </nav>
-
       </div>
     </header>
   );

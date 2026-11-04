@@ -1,11 +1,8 @@
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  height: 72px;
-  background: rgba(255, 255, 255, 0.96);
+  height: 56px;
+  flex: 0 0 56px;
+  background: #ffffff;
   border-bottom: 1px solid #e4e8f1;
-  backdrop-filter: blur(10px);
 }
 
 .nav-container {
@@ -18,39 +15,61 @@
 }
 
 .logo {
-  border: 0;
-  background: none;
-  color:#8613ea;
-  font-size: 20px;
+  color: #5146d8;
+  font-size: 18px;
   font-weight: 800;
+  text-decoration: none;
 }
 
 .logo span {
-  color:#8613ea;
+  color: inherit;
 }
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  align-items: center;
+  gap: 8px;
 }
 
-.nav-links button {
-  border: 0;
-  background: transparent;
-  color: #060911;
+.nav-links a {
+  border-radius: 6px;
+  padding: 7px 11px;
+  color: #333746;
   font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
 }
 
-.nav-links button:hover {
-  color: #4657d9;
+.nav-links a:hover,
+.nav-links a.active {
+  color: #5146d8;
+  background: #f0efff;
+}
+
+.nav-links .favorites-link {
+  color: #5146d8;
+  background: #f0efff;
+}
+
+.favorites-link span {
+  margin-left: 3px;
 }
 
 @media (max-width: 560px) {
   .nav-container {
-    width: calc(100% - 26px);
+    width: calc(100% - 20px);
   }
 
   .nav-links {
-    gap: 14px;
+    gap: 1px;
+  }
+
+  .nav-links a {
+    padding: 7px 6px;
+    font-size: 12px;
+  }
+
+  .logo {
+    font-size: 15px;
   }
 }

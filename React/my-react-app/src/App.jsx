@@ -1,162 +1,27 @@
-import React, { useState } from "react";
-
-import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Hero/Hero";
-import EventList from "./components/EventList/EventList";
-import Registration from "./components/Registration/Registration";
-import Footer from "./components/Footer/Footer";
-
-import { initialEvents } from "./data/events";
-
-import "./App.css";
-
+import Navbar from './components/Navbar/Navbar'
+import Hero from './components/Hero/Hero'
+import EventList from './components/EventList/EventList'
+import { Routes, Route } from 'react-router-dom'
+import Footer from './components/Footer/Footer'
+import RegistrationRoute from './components/Registration/RegistrationRoute'
+import EventDetails from './components/EventDetails/EventDetails'
 
 function App() {
-
-  const [events, setEvents] = useState(initialEvents);
-
-  const [selectedEvent, setSelectedEvent] = useState(null);
-
-
-  /*
-    Register button
-
-    If event is already registered:
-    cancel registration
-
-    If event is not registered:
-    open registration form
-  */
-
-  const handleRegister = (event) => {
-
-    if (event.isRegistered) {
-
-      setEvents((previousEvents) =>
-        previousEvents.map((item) =>
-          item.id === event.id
-            ? {
-                ...item,
-                isRegistered: false,
-                registrations:
-                  Math.max(0, item.registrations - 1),
-              }
-            : item
-        )
-      );
-
-      return;
-    }
-
-
-    setSelectedEvent(event);
-  };
-
-
-  /*
-    Submit Registration
-  */
-
-  const handleRegistrationSubmit = (eventId) => {
-
-    setEvents((previousEvents) =>
-      previousEvents.map((event) =>
-        event.id === eventId
-          ? {
-              ...event,
-              isRegistered: true,
-              registrations: event.registrations + 1,
-            }
-          : event
-      )
-    );
-
-
-    setSelectedEvent(null);
-
-    alert("Registration successful!");
-  };
-
-
-  /*
-    Favorite
-  */
-
-  const handleFavorite = (eventId) => {
-
-    setEvents((previousEvents) =>
-      previousEvents.map((event) =>
-        event.id === eventId
-          ? {
-              ...event,
-              isFavorite: !event.isFavorite,
-            }
-          : event
-      )
-    );
-  };
-
-
-  /*
-    Remove Event
-  */
-
-  const handleRemove = (eventId) => {
-
-    setEvents((previousEvents) =>
-      previousEvents.filter(
-        (event) => event.id !== eventId
-      )
-    );
-  };
-
-
-  /*
-    Back to Events
-  */
-
-  const handleBackToEvents = () => {
-    setSelectedEvent(null);
-  };
-
-
   return (
-    <>
-
+    <div className="app-shell">
       <Navbar />
-
-
-      {selectedEvent ? (
-
-        <Registration
-          event={selectedEvent}
-          onSubmit={handleRegistrationSubmit}
-          onBack={handleBackToEvents}
-        />
-
-      ) : (
-
-        <>
-
-          <Hero />
-
-          <EventList
-            events={events}
-            onRegister={handleRegister}
-            onFavorite={handleFavorite}
-            onRemove={handleRemove}
-          />
-
-        </>
-
-      )}
-
-
+      <main className="app-main">
+        <Routes>
+          <Route path="/" element={<Hero />} />
+          <Route path="/events" element={<EventList />} />
+          <Route path="/events/:id" element={<EventDetails />} />
+          <Route path="/favorites" element={<EventList favoritesOnly />} />
+          <Route path="/registration" element={<RegistrationRoute />} />
+        </Routes>
+      </main>
       <Footer />
-
-    </>
-  );
+    </div>
+  )
 }
 
-
-export default App;
+export default App

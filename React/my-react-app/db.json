@@ -1,0 +1,69 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "Cultural Day",
+      "category": "CULTURE",
+      "description": "Celebrate music, dance, art, and cultures from across campus.",
+      "date": "2026-11-12",
+      "venue": "Open Air Stage"
+    },
+    {
+      "id": "2",
+      "title": "Sports Meet",
+      "category": "SPORTS",
+      "description": "Support your classmates and take part in campus sports activities.",
+      "date": "2026-11-20",
+      "venue": "College Ground"
+    },
+    {
+      "id": "3",
+      "title": "Web Design Session",
+      "category": "DESIGN",
+      "description": "Learn the basics of web design and create your first page layout.",
+      "date": "2026-11-25",
+      "venue": "Computer Lab"
+    }
+  ],
+  "registrations": [
+    {
+      "studentName": "hh",
+      "email": "fdd@gmail.com",
+      "department": "EEE",
+      "year": "3rd Year",
+      "attendance": "in-person",
+      "accessibility": true,
+      "message": "gjhg",
+      "eventId": "2",
+      "eventTitle": "Sports Meet",
+      "createdAt": "2026-11-03T16:56:26.795Z",
+      "id": 2
+    },
+    {
+      "studentName": "john",
+      "email": "student@gmail.com",
+      "department": "EEE",
+      "year": "2nd Year",
+      "attendance": "online",
+      "accessibility": true,
+      "message": "ftdgdf",
+      "eventId": "1",
+      "eventTitle": "Cultural Day",
+      "createdAt": "2026-11-03T17:10:21.332Z",
+      "id": 3
+    },
+    {
+      "studentName": "tim",
+      "email": "student@gmail.com",
+      "department": "EEE",
+      "year": "2nd Year",
+      "attendance": "online",
+      "accessibility": true,
+      "message": "",
+      "eventId": "1",
+      "eventTitle": "Cultural Day",
+      "createdAt": "2026-11-03T17:24:10.692Z",
+      "id": 4
+    }
+  ]
+}

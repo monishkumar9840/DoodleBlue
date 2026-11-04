@@ -1,0 +1,132 @@
+.common-input,
+.common-select,
+.common-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  border: 1px solid #d4d9e2;
+  border-radius: 5px;
+  padding: 9px;
+  background: #ffffff;
+  color: #394457;
+  font: inherit;
+}
+
+.common-input,
+.common-select {
+  min-height: 34px;
+}
+
+.common-textarea {
+  min-height: 68px;
+  resize: vertical;
+}
+
+.common-input:focus,
+.common-select:focus,
+.common-textarea:focus {
+  border-color: #5967d5;
+  outline: 2px solid rgba(89, 103, 213, 0.14);
+  outline-offset: 1px;
+}
+
+.common-input:disabled,
+.common-select:disabled,
+.common-textarea:disabled {
+  cursor: not-allowed;
+  background: #f3f4f6;
+  color: #858b96;
+}
+
+.common-input-choice {
+  accent-color: #5146d8;
+}
+
+.common-button {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 5px;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.common-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.common-button:focus-visible {
+  outline: 2px solid #766de2;
+  outline-offset: 2px;
+}
+
+.common-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.common-button--small {
+  min-height: 29px;
+  padding: 0 11px;
+  font-size: 10px;
+}
+
+.common-button--medium {
+  min-height: 32px;
+  padding: 0 13px;
+  font-size: 11px;
+}
+
+.common-button--large {
+  min-height: 40px;
+  padding: 0 18px;
+  font-size: 13px;
+}
+
+.common-button--primary {
+  background: #5146d8;
+  color: #ffffff;
+}
+
+.common-button--primary:hover:not(:disabled) {
+  background: #4038b1;
+}
+
+.common-button--secondary {
+  background: #e9ebef;
+  color: #3f4755;
+}
+
+.common-button--secondary:hover:not(:disabled) {
+  background: #dfe2e7;
+}
+
+.common-button--danger {
+  background: #fde4e4;
+  color: #a63e48;
+}
+
+.common-button--danger:hover:not(:disabled) {
+  background: #fbd3d3;
+}
+
+.common-button--favorite {
+  background: #fff1c9;
+  color: #76591a;
+}
+
+.common-button--favorite:hover:not(:disabled) {
+  background: #ffe8a6;
+}
+
+@media (max-width: 480px) {
+  .common-button--large {
+    min-height: 38px;
+    padding-inline: 14px;
+  }
+}
